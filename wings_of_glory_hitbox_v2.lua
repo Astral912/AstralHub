@@ -14,7 +14,7 @@ local UpdateRate = 1/30 -- FPS-like loop (higher = smoother but more lag)
 local expandedParts = {} -- Cache to avoid spam
 
 local function expandPart(part)
-    if part:IsA("BasePart") and part.Parent \~= LocalPlayer.Character and part.Size.Magnitude < 100 then
+    if part:IsA("BasePart") and part.Parent ~= LocalPlayer.Character and part.Size.Magnitude < 100 then
         part.OriginalSize = part.Size -- Backup (optional)
         part.Size = Vector3.new(HitboxSize, HitboxSize / 2, HitboxSize) -- Wider for planes
         part.Transparency = Transparency
@@ -35,7 +35,7 @@ local function getEnemyPlanes()
             if hasPlanePart then
                 -- Skip if owned by you
                 local owner = obj:FindFirstChild("Owner") or obj:FindFirstChild("Pilot") or obj:FindFirstChild(LocalPlayer.Name)
-                if not owner or (owner:IsA("ObjectValue") and owner.Value \~= LocalPlayer) then
+                if not owner or (owner:IsA("ObjectValue") and owner.Value ~= LocalPlayer) then
                     table.insert(enemies, obj)
                 end
             end
@@ -43,7 +43,7 @@ local function getEnemyPlanes()
     end
     -- Also include player characters/placeholders
     for _, plr in pairs(Players:GetPlayers()) do
-        if plr \~= LocalPlayer and plr.Character then
+        if plr ~= LocalPlayer and plr.Character then
             table.insert(enemies, plr.Character)
         end
     end
