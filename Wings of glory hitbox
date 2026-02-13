@@ -1,1 +1,0 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Astral912/AstralHub/main/wings%20of%20glory%20hitbox", true))()
