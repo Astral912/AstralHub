@@ -1,11 +1,13 @@
--- Wings of Glory Hitbox v10 – FUSELAGE ONLY | Server Hits + Respawn Safe | Grok 2026
+-- Wings of Glory v10+ – 3KM EASY HITS | Fuselage Beast Mode
+-- Same as v10 but HitboxSize = 120 + smoother Stepped
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
 local LocalPlayer = Players.LocalPlayer
-local HitboxSize = 80  -- Perfect for Fuselage
-local Transparency = 0.3
+local HitboxSize = 120  -- 3KM range god
+local Transparency = 0.2  -- Brighter glow
 
 local expandedFuselages = {}
 
@@ -14,16 +16,20 @@ local function expandFuselage(model)
     if fuselage and fuselage:IsA("BasePart") and not expandedFuselages[fuselage] then
         expandedFuselages[fuselage] = true
         
-        pcall(function()
-            fuselage.Size = Vector3.new(HitboxSize, HitboxSize * 0.7, HitboxSize)
-            fuselage.Transparency = Transparency
-            fuselage.CanCollide = false
-            fuselage.Material = Enum.Material.ForceField
-            fuselage.BrickColor = BrickColor.new("Bright blue")
-            fuselage.NetworkOwnership = nil  -- SERVER SEES HUGE FUSELAGE!
-            fuselage.AssemblyLinearVelocity = Vector3.new()  -- Force replicate
+        spawn(function()
+            while fuselage.Parent do
+                pcall(function()
+                    fuselage.Size = Vector3.new(HitboxSize, HitboxSize * 0.7, HitboxSize)
+                    fuselage.Transparency = Transparency
+                    fuselage.CanCollide = false
+                    fuselage.Material = Enum.Material.Neon  -- BRIGHTER
+                    fuselage.BrickColor = BrickColor.new("Bright blue")
+                    fuselage.NetworkOwnership = nil
+                end)
+                wait(0.05)  -- Faster spam = smoother
+            end
         end)
-        print("Expanded Fuselage on: " .. model.Name)
+        print("🚀 MAXED Fuselage: " .. model.Name)
     end
 end
 
@@ -41,9 +47,8 @@ RunService.Stepped:Connect(function()
     end
 end)
 
--- Respawn cleanup
 LocalPlayer.CharacterAdded:Connect(function()
     expandedFuselages = {}
 end)
 
-print("Hitbox v10 Loaded! Targeting FUSELAGE (PrimaryPart) – REAL SERVER HITS!")
+print("🎖️ v10+ LOADED! 3KM FUSELAGE BEAST MODE – UNSTOPPABLE!")
