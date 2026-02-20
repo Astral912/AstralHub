@@ -4,7 +4,7 @@ local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
 local LocalPlayer = Players.LocalPlayer
-local HitboxSize = 70  -- Server-visible size
+local HitboxSize = 200  -- Server-visible size
 local Transparency = 0.4  -- Glow visible
 
 local expanded = {}  -- Track expanded models
