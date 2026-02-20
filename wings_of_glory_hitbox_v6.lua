@@ -12,7 +12,7 @@ local function expandPart(part)
         pcall(function()
             part.Size = Vector3.new(HitboxSize, HitboxSize*0.6, HitboxSize)
             part.Transparency = Transparency
-            part.CanCollide = true
+            part.CanCollide = false
             part.Material = Enum.Material.ForceField
             part.BrickColor = BrickColor.new("Bright blue")
         end)
